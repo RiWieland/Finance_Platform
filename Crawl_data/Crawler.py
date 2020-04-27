@@ -1,10 +1,4 @@
 
-# Python-to-go:
-# - double underscore function for internal use
-# - initialize variables in self with funcitons
-# -
-
-
 from Crawl_data.PlanC_Tickers_Yahoo import SP500_List, DAX_List, ETF, ECON
 
 import datetime
@@ -72,16 +66,3 @@ class datacrawler():  # getting attributes from praser
             except Exception as e:
                 print(e)
                 #print("Yahoo Finance connection not robust, not successful for:", stock)
-
-
-
-
-
-#database, tabe, index, datasource ,start_date, end_date = 'test1', 'test2', 'DAX', 'yahoo', '2019-01-01', '2019-12-30'
-
-#dc = datacrawler(database, tabe, index, datasource,start_date, end_date)
-#dc.crawl_prices()
-
-
-
-
