@@ -22,3 +22,13 @@ class Stock:          # Design own class for Stock?
         self.MOM_n = MOM_n
         self.SMA_n = SMA_n
         self.OBV_n = OBV_N
+
+        self.stock_df = self.__get_stock_df()
+        
+    @to_numeric_('stock_frame')
+    def __get_stock_df(self):          # use double underscore in beginning here?
+
+        self.df_stock = self.stock_frame.loc[self.stock_frame['Symbol'] == self.stock_name]
+        self.df_stock.reset_index(inplace=True)
+
+        return self.df_stock
