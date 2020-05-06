@@ -28,6 +28,7 @@ class Stock:          # Design own class for Stock?
         self.returns = self.calc_return()
         self.log_return = self.calc_log_return()
         self.vol = self.calc_volatility()
+        self.sharpe_ration = self.calc_sharpe()
 
 
 
@@ -66,3 +67,9 @@ class Stock:          # Design own class for Stock?
         self.df_stock['VOL'] = pd.Series(self.df_stock['LOG_RETURN']).rolling(self.vol_window).std()
         #pd.rolling_std(self.df_stock['LOG_RETURN'], window=self.vol_window) * np.sqrt(self.vol_window)
         return self.df_stock['VOL']
+
+    def calc_sharpe(self):
+
+        volatility = self.returns.std() * np.sqrt(self.vol_window)
+        self.df_stock['SHARPE_RATIO'] = (self.returns.mean() - self.risk_free) / volatility
+        return self.df_stock['SHARPE_RATIO']
