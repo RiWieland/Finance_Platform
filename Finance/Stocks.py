@@ -27,6 +27,8 @@ class Stock:          # Design own class for Stock?
         self.Dates = self.get_dates()
         self.returns = self.calc_return()
         self.log_return = self.calc_log_return()
+        self.vol = self.calc_volatility()
+
 
 
     @to_numeric_('stock_frame')
@@ -55,9 +57,12 @@ class Stock:          # Design own class for Stock?
 
         return self.df_stock
 
-
-
     def calc_log_return(self):
         self.df_stock['LOG_RETURN'] = np.log(self.df_stock['Close'] / self.df_stock['Close'].shift(1))
 
         return self.df_stock['LOG_RETURN']
+
+    def calc_volatility(self):
+        self.df_stock['VOL'] = pd.Series(self.df_stock['LOG_RETURN']).rolling(self.vol_window).std()
+        #pd.rolling_std(self.df_stock['LOG_RETURN'], window=self.vol_window) * np.sqrt(self.vol_window)
+        return self.df_stock['VOL']
