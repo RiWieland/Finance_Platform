@@ -29,6 +29,7 @@ class Stock:          # Design own class for Stock?
         self.log_return = self.calc_log_return()
         self.vol = self.calc_volatility()
         self.sharpe_ration = self.calc_sharpe()
+        self.vol_chg = self.calc_vol_change()
 
 
 
@@ -73,3 +74,8 @@ class Stock:          # Design own class for Stock?
         volatility = self.returns.std() * np.sqrt(self.vol_window)
         self.df_stock['SHARPE_RATIO'] = (self.returns.mean() - self.risk_free) / volatility
         return self.df_stock['SHARPE_RATIO']
+
+    def calc_vol_change(self):
+            self.df_stock['VOL_CHG'] = self.df_stock['Volume'].pct_change()
+
+            return self.df_stock
