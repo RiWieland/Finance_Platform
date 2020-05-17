@@ -30,6 +30,7 @@ class Stock:          # Design own class for Stock?
         self.vol = self.calc_volatility()
         self.sharpe_ration = self.calc_sharpe()
         self.vol_chg = self.calc_vol_change()
+        self.Will_R = self.calc_wil_r()
 
 
 
@@ -79,3 +80,16 @@ class Stock:          # Design own class for Stock?
             self.df_stock['VOL_CHG'] = self.df_stock['Volume'].pct_change()
 
             return self.df_stock
+
+    def calc_wil_r(self):                   # For all Attribute-Functions: Use no, single, or double underscore?
+        df_store2 = pd.DataFrame()
+        # Create the "L14" column in the DataFrame
+        df_store2['L'] = pd.to_numeric(self.df_stock['Low']).rolling(window=14).min()
+
+        # Create the "H14" column in the DataFrame
+        df_store2['H'] = self.df_stock['High'].rolling(window=14).max()
+
+        # Create WIL_R:
+        self.df_stock['WIL_R'] = (df_store2['H'].subtract(pd.to_numeric(self.df_stock['Close']))) * (-100) / (df_store2['H'].subtract(df_store2['L']))
+
+        return self.df_stock
