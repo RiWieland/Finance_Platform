@@ -31,6 +31,7 @@ class Stock:          # Design own class for Stock?
         self.sharpe_ration = self.calc_sharpe()
         self.vol_chg = self.calc_vol_change()
         self.Will_R = self.calc_wil_r()
+        self.calc_sto_osc = calc_sto_osc()
 
 
 
@@ -91,5 +92,21 @@ class Stock:          # Design own class for Stock?
 
         # Create WIL_R:
         self.df_stock['WIL_R'] = (df_store2['H'].subtract(pd.to_numeric(self.df_stock['Close']))) * (-100) / (df_store2['H'].subtract(df_store2['L']))
+
+        return self.df_stock
+
+    def calc_sto_osc(self):
+        '''
+        Stochastic Oscillator
+        '''
+        df_store = pd.DataFrame()
+        # Create the "L14" column in the DataFrame
+        df_store['L'] = self.df_stock['Low'].rolling(window=14).min()
+
+        # Create the "H14" column in the DataFrame
+        df_store['H'] = self.df_stock['High'].rolling(window=14).max()
+
+        # Create the "%K" column in the DataFrame
+        self.df_stock['STO_OSC'] = 100 * ((self.df_stock['Close'] - df_store['L']) / (df_store['H'] - df_store['L']))
 
         return self.df_stock
