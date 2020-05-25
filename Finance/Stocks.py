@@ -32,6 +32,7 @@ class Stock:          # Design own class for Stock?
         self.vol_chg = self.calc_vol_change()
         self.Will_R = self.calc_wil_r()
         self.calc_sto_osc = calc_sto_osc()
+        self.calc_rsi = calc_rsi()
 
 
 
@@ -108,5 +109,23 @@ class Stock:          # Design own class for Stock?
 
         # Create the "%K" column in the DataFrame
         self.df_stock['STO_OSC'] = 100 * ((self.df_stock['Close'] - df_store['L']) / (df_store['H'] - df_store['L']))
+
+        return self.df_stock
+
+    def calc_rsi(self):
+        '''
+        Calculate Relative Strenght Index
+        RSI is a popular momentum indicator which determines whether the stock is overbought
+        or oversold
+        '''
+        delta = self.df_stock.Close.diff()
+        window = 15
+        up_days = delta.copy()
+        up_days[delta <= 0] = 0.0
+        down_days = abs(delta.copy())
+        down_days[delta > 0] = 0.0
+        RS_up = up_days.rolling(window).mean()
+        RS_down = down_days.rolling(window).mean()
+        self.df_stock['RSI'] = 100 - 100 / (1 + RS_up / RS_down)
 
         return self.df_stock
