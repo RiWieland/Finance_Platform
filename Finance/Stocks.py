@@ -33,6 +33,7 @@ class Stock:          # Design own class for Stock?
         self.Will_R = self.calc_wil_r()
         self.calc_sto_osc = calc_sto_osc()
         self.calc_rsi = calc_rsi()
+        self.calc_mom = calc_mom()
 
 
 
@@ -127,5 +128,15 @@ class Stock:          # Design own class for Stock?
         RS_up = up_days.rolling(window).mean()
         RS_down = down_days.rolling(window).mean()
         self.df_stock['RSI'] = 100 - 100 / (1 + RS_up / RS_down)
+
+        return self.df_stock
+
+    # Momentum
+    def calc_mom(self):
+
+        for n in self.MOM_n:
+
+            M = pd.Series(self.df_stock['Close'].diff(n), name='MOM_' + str(n))
+            self.df_stock = self.df_stock.join(M)
 
         return self.df_stock
