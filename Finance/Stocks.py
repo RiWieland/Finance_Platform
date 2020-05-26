@@ -34,6 +34,7 @@ class Stock:          # Design own class for Stock?
         self.calc_sto_osc = calc_sto_osc()
         self.calc_rsi = calc_rsi()
         self.calc_mom = calc_mom()
+        self.sma = self.calc_sma()
 
 
 
@@ -138,5 +139,15 @@ class Stock:          # Design own class for Stock?
 
             M = pd.Series(self.df_stock['Close'].diff(n), name='MOM_' + str(n))
             self.df_stock = self.df_stock.join(M)
+
+        return self.df_stock
+
+    def calc_sma(self):
+
+        for n in self.SMA_n:
+
+            #self.df_stock['SMA'] = pd.Series(pd.rolling_mean(self.df_stock['Close'], self.SMA_n), name='SMA_' + str(self.SMA_n))
+            S = pd.Series(self.df_stock['Close'], name='SMA_' + str(n)).rolling(n).mean()
+            self.df_stock = self.df_stock.join(S)
 
         return self.df_stock
