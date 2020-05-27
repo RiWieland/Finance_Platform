@@ -35,7 +35,7 @@ class Stock:          # Design own class for Stock?
         self.calc_rsi = calc_rsi()
         self.calc_mom = calc_mom()
         self.sma = self.calc_sma()
-
+        self.beta = self.calc_beta()
 
 
     @to_numeric_('stock_frame')
@@ -151,3 +151,23 @@ class Stock:          # Design own class for Stock?
             self.df_stock = self.df_stock.join(S)
 
         return self.df_stock
+
+
+    # rolling Beta of Stock:
+    def calc_beta(self):
+        # input_df['BETA'] = input_df.rolling(30).cov().unstack()['RETURN']['RETURN_INDICES']/ input_df.rolling(30).var().unstack()['RETURN_INDICES']
+
+        window_ = 30
+        # join indice Data for available stock data:
+        df_merge = pd.merge(self.df_stock, self.index_frame, on=['Trading_Date'],
+                            how='left', suffixes=('_Stock', '_Index'))
+
+        df_merge.interpolate(method='linear', inplace=True)
+
+        cov_ = pd.Series(df_merge['RETURNS_Stock'] ).rolling(window=window_).cov(df_merge['RETURNS_Index'])
+        var_Index = pd.Series(df_merge['RETURNS_Index']).rolling(window=window_).var()
+
+        self.df_stock['BETA'] = cov_ / var_Index
+        #self.df_stock['BETA'] = cov_ / var_Index
+
+        return self.df_stock['BETA']
