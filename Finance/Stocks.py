@@ -171,3 +171,22 @@ class Stock:          # Design own class for Stock?
         #self.df_stock['BETA'] = cov_ / var_Index
 
         return self.df_stock['BETA']
+
+    def calc_vol_ema(self):
+        '''
+        Calculate Volatility Expotential-Moving-Average
+        '''
+        prev_index = 0
+        index_list = self.df_stock.index.values.tolist()
+        self.df_stock.iloc[0, self.df_stock.columns.get_loc('VOL_EMA')] = abs(self.df_stock.iloc[0]['RETURN'])
+
+        for i in range(1, len(index_list)):
+            # Volatility EAM:
+            alpha = 2 / (180 + 1)
+            LAG_VOLATILITY_EMA = self.df_stock.iloc[prev_index, self.df_stock.columns.get_loc('VOL_EMA')]
+
+            self.df_stock.loc[i, 'VOL_EMA'] = alpha * np.absolute(self.df_stock.loc[i, 'RETURN']) + (1 - alpha) * LAG_VOLATILITY_EMA
+
+            prev_index = prev_index + 1
+
+        return self.df_stock['VOL_EMA']
