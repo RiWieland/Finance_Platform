@@ -36,6 +36,8 @@ class Stock:          # Design own class for Stock?
         self.calc_mom = calc_mom()
         self.sma = self.calc_sma()
         self.beta = self.calc_beta()
+        self.sma = self.calc_sma()
+        self.obv = self.calc_obv()
 
 
     @to_numeric_('stock_frame')
@@ -190,3 +192,26 @@ class Stock:          # Design own class for Stock?
             prev_index = prev_index + 1
 
         return self.df_stock['VOL_EMA']
+
+    # On-balance Volume
+    def calc_obv(self):
+        """
+        Calculate On-Balance Volume for given data.
+        """
+
+        for n in self.OBV_n:
+            i = 0
+            OBV = [0]
+            while i < self.df_stock.index[-1]:
+                if self.df_stock.loc[i + 1, 'Close'] - self.df_stock.loc[i, 'Close'] > 0:
+                    OBV.append(self.df_stock.loc[i + 1, 'Volume'])
+                if self.df_stock.loc[i + 1, 'Close'] - self.df_stock.loc[i, 'Close'] == 0:
+                    OBV.append(0)
+                if self.df_stock.loc[i + 1, 'Close'] - self.df_stock.loc[i, 'Close'] < 0:
+                    OBV.append(-self.df_stock.loc[i + 1, 'Volume'])
+                i = i + 1
+            OBV = pd.Series(OBV)
+            OBV_ma = pd.Series(OBV.rolling(n, min_periods=n).mean(), name='OBV_' + str(n))
+            self.df_stock = self.df_stock.join(OBV_ma)
+
+        return self.df_stock
