@@ -215,3 +215,10 @@ class Stock:          # Design own class for Stock?
             self.df_stock = self.df_stock.join(OBV_ma)
 
         return self.df_stock
+
+    def calc_to_database(self, target_table, db_connection):
+
+        self.df_stock[['Trading_Date', 'Symbol', 'Year', 'Month', 'Week', 'Day', 'RETURNS', 'VOL_CHG', 'WIL_R',
+                           'STO_OSC', 'RSI', 'MOM_14', 'MOM_21',
+                        'MOM_28', 'SMA_14', 'SMA_21', 'SMA_28', 'OBV_14', 'OBV_21', 'OBV_28', 'BETA']].to_sql(
+                target_table, db_connection, if_exists="append", index=False)
