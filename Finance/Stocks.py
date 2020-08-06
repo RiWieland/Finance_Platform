@@ -26,6 +26,7 @@ class Stock:          # Design own class for Stock?
         self.stock_df = self.__get_stock_df()
         self.Dates = self.get_dates()
         self.returns = self.calc_return()
+        self.calc_return_index = self.calc_return_index()
         self.log_return = self.calc_log_return()
         self.vol = self.calc_volatility()
         self.sharpe_ration = self.calc_sharpe()
@@ -35,7 +36,7 @@ class Stock:          # Design own class for Stock?
         self.calc_rsi = self.calc_rsi()
         self.calc_mom = self.calc_mom()
         self.sma = self.calc_sma()
-        #self.beta = self.calc_beta()
+        self.beta = self.calc_beta()
         self.obv = self.calc_obv()
 
 
@@ -64,6 +65,15 @@ class Stock:          # Design own class for Stock?
         self.df_stock['RETURNS'].iloc[0] = self.df_stock['RETURNS'].iloc[1]
 
         return self.df_stock
+   
+    def calc_return_index(self):
+        self.index_frame['RETURNS'] = self.index_frame['Close'].astype(float).pct_change()
+        # adjust nan values:
+        self.index_frame['RETURNS'].interpolate('nearest', inplace=True)
+        self.index_frame['RETURNS'].iloc[0] = self.index_frame['RETURNS'].iloc[1]
+        
+        return self.index_frame
+
 
     def calc_log_return(self):
         self.df_stock['LOG_RETURN'] = np.log(self.df_stock['Close'] / self.df_stock['Close'].shift(1))
