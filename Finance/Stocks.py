@@ -35,8 +35,7 @@ class Stock:          # Design own class for Stock?
         self.calc_rsi = self.calc_rsi()
         self.calc_mom = self.calc_mom()
         self.sma = self.calc_sma()
-        self.beta = self.calc_beta()
-        self.sma = self.calc_sma()
+        #self.beta = self.calc_beta()
         self.obv = self.calc_obv()
 
 
