@@ -45,7 +45,7 @@ class datacrawler():  # getting attributes from praser
         tickers_list = self.__select_index()
         complete_dataframe = pd.DataFrame()
 
-        for stock in tickers_list[0:2]:
+        for stock in tickers_list:
 
             try:
 
@@ -61,7 +61,7 @@ class datacrawler():  # getting attributes from praser
                 complete_dataframe = complete_dataframe.append(df, ignore_index=True)#.reset_index(inplace=True,drop=False)
 
                 complete_dataframe.to_sql(self.db_staging_table, self.db_connection, if_exists="append", index=False)
-
+                print('prices drawn for', stock)
 
             except Exception as e:
                 print(e)
