@@ -27,11 +27,11 @@ class datacrawler():  # getting attributes from praser
 
         if self.index == 'SP500':
 
-            return SP500_List
+            return SP500
 
         if self.index == 'DAX':
 
-            return DAX_List
+            return DAX
 
         if self.index == 'ECON':
 
