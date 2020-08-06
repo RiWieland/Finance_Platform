@@ -41,7 +41,7 @@ if __name__ == '__main__':
     if 1==2:
 
         # Initialie Database
-        DB_DIR = Path(__file__).resolve().parent.joinpath('Database/stocks.db')
+        DB_DIR = Path('__file__').resolve().parent.joinpath('Database/stocks.db')
         DB = DB_object(str(DB_DIR))
         conn = DB.create_connection()
         print(DB)
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
     # if args.calculation:
     if 1==1:
-        DB_DIR = Path(__file__).resolve().parent.joinpath('Database/stocks.db')
+        DB_DIR = Path('__file__').resolve().parent.joinpath('Database/stocks.db')
         DB = DB_object(str(DB_DIR))
         conn = DB.create_connection()
         print(DB)
