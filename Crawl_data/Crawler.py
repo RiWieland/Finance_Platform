@@ -1,5 +1,5 @@
 
-from Crawl_data.PlanC_Tickers_Yahoo import SP500_List, DAX_List, ETF, ECON
+from Crawl_data.Tickers_Yahoo import SP500, DAX, ETF, ECON
 
 import datetime
 import pandas as pd
