@@ -94,8 +94,9 @@ if __name__ == '__main__':
 
             # To Do: maybe create Stock Object dynamically
             stock_object = Stock(Stock_frame, stock_name, index_object.df_stock, vol_window, dates_MOM, dates_SMA, dates_OBV)
-            print(stock_object.df_stock.columns)
-            DB.drop_table('Stock_Calc')
+            
+            print('##################################################')
+            print('calculating financial key figures for ', stock_name)
 
             Stock_calc_table = DB.create_stock_calc()
             stock_object.calc_to_database(Stock_calc_table, conn)
