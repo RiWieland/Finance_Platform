@@ -5,7 +5,7 @@ import pandas as pd
 def to_numeric_(object_):
     def _decorator(fn):
         '''
-        Decorator change type of numeric columns to numeric
+        Decorator change type to numeric
         '''
         def wrapper(self):
 
