@@ -76,8 +76,8 @@ if __name__ == '__main__':
         # Calculate Index Key figures
         for index_name in Index_frame['Symbol'].unique():
 
-            Index_calc_table = DB.create_index_calc()
-            index_object = Index_(Index_frame, index_name)
+            #Index_calc_table = DB.create_index_calc()
+            #index_object = Index_(Index_frame, index_name)
 
             # write in Database
             index_object.calc_to_database(Index_calc_table, conn)
@@ -91,7 +91,7 @@ if __name__ == '__main__':
             vol_window = 30
 
             # To Do: maybe create Stock Object dynamically
-            stock_object = Stock(Stock_frame, stock_name, index_object.df_stock, vol_window, dates_MOM, dates_SMA, dates_OBV)
+            stock_object = Stock(Stock_frame, stock_name, Index_frame, vol_window, dates_MOM, dates_SMA, dates_OBV)
             
             print('##################################################')
             print('calculating financial key figures for ', stock_name)
