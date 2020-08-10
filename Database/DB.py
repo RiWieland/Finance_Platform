@@ -21,6 +21,7 @@ class DB_object():
 
         try:
             self.conn = sqlite3.connect(self.path)
+            print("Create Connection to SQL Lite")
 
             return self.conn
 
