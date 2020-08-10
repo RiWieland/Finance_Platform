@@ -16,7 +16,6 @@ def to_numeric_(object_):
                 try:
                     #self.df_index[col] = pd.to_numeric(self.df_index[col])
                     dataframe_[col] = pd.to_numeric(dataframe_[col])
-                    print(col)
 
                 except:
                     continue
