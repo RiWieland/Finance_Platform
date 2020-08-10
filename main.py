@@ -73,14 +73,14 @@ if __name__ == '__main__':
         Index_frame = pd.read_sql_query("""select * from Index_Stage where 1=1 ;""", conn)
         Stock_frame = pd.read_sql_query("""select * from Stocks_Stage where 1=1 ;""", conn)
 
-        # Calculate Index Key figures
-        for index_name in Index_frame['Symbol'].unique():
+        # -> block gets relevant for multiple indexes
+        #for index_name in Index_frame['Symbol'].unique():
 
             #Index_calc_table = DB.create_index_calc()
             #index_object = Index_(Index_frame, index_name)
 
             # write in Database
-            index_object.calc_to_database(Index_calc_table, conn)
+            #index_object.calc_to_database(Index_calc_table, conn)
 
         # Calculate Stock Attributes and Keyfigures for all Stocks:
         for stock_name in Stock_frame['Symbol'].unique():
