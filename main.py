@@ -1,7 +1,7 @@
 from Database.DB import DB_object
 from Crawl_data.Crawler import datacrawler
 from Finance.Stocks import Stock
-from Finance.Index import Index_
+
 
 from pathlib2 import Path
 import argparse
