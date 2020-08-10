@@ -55,8 +55,6 @@ if __name__ == '__main__':
         stock_table = DB.create_stock_stage()
         index_table = DB.create_index_stage()
 
-        print(stock_name)
-
         # Initial Load
         index, datasource, start_date, end_date = 'DAX', 'yahoo', '2019-01-01', '2019-12-30'
         datacrawler(conn, stock_table, index, datasource, start_date, end_date).crawl_prices_to_db()
