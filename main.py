@@ -68,6 +68,8 @@ if __name__ == '__main__':
         DB = DB_object(str(DB_DIR))
         conn = DB.create_connection()
         print(DB)
+        
+        Stock_calc_table = DB.create_stock_calc()
 
         # read in data from Database
         Index_frame = pd.read_sql_query("""select * from Index_Stage where 1=1 ;""", conn)
@@ -81,8 +83,7 @@ if __name__ == '__main__':
 
             # write in Database
             #index_object.calc_to_database(Index_calc_table, conn)
-
-        # Calculate Stock Attributes and Keyfigures for all Stocks:
+        
         for stock_name in Stock_frame['Symbol'].unique():
 
             dates_MOM = [14, 21, 28]
@@ -96,7 +97,6 @@ if __name__ == '__main__':
             print('##################################################')
             print('calculating financial key figures for ', stock_name)
 
-            Stock_calc_table = DB.create_stock_calc()
             stock_object.calc_to_database(Stock_calc_table, conn)
 
 
