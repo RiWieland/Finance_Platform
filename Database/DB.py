@@ -84,7 +84,11 @@ class DB_object():
             SMA_14 VARCHAR(30),
             SMA_21 VARCHAR(30),
             SMA_28 VARCHAR(30),
-            BETA VARCHAR(30)              
+            BETA VARCHAR(30),
+            BOLLING_LOWER VARCHAR(30),
+            BOLLING_UPPER VARCHAR(30),
+            MACD VARCHAR(30),
+            MACD_SIGNAL VARCHAR(30)
             );"""
 
         self.conn.cursor().execute(sql_command)
