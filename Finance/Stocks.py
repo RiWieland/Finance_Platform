@@ -38,6 +38,8 @@ class Stock:          # Design own class for Stock?
         self.sma = self.calc_sma()
         self.beta = self.calc_beta()
         self.obv = self.calc_obv()
+        self.BOLLING_LOWER = self.bollinger_lower()
+        self.BOLLING_UPPER = self.bollinger_upper()
 
 
     @to_numeric_('stock_frame')
@@ -224,6 +226,22 @@ class Stock:          # Design own class for Stock?
             self.df_stock = self.df_stock.join(OBV_ma)
 
         return self.df_stock
+    
+    def bollinger_upper(self, window=21):
+        rolling_mean = self.df_stock.Close.rolling(window).mean()
+        rolling_std = self.df_stock.Close.rolling(window).std()
+        self.df_stock['BOLLING_UPPER'] = rolling_mean + (rolling_std*2)
+        return self.df_stock['BOLLING_UPPER']
+    
+    
+    def bollinger_lower(self, window=21):
+        rolling_mean = self.df_stock.Close.rolling(window).mean()
+        rolling_std = self.df_stock.Close.rolling(window).std()
+        self.df_stock['BOLLING_LOWER'] = rolling_mean - (rolling_std*2)
+        return self.df_stock['BOLLING_LOWER']
+
+    
+   
 
     def calc_to_database(self, target_table, db_connection):
 
