@@ -50,6 +50,7 @@ if __name__ == '__main__':
         # drop table
         DB.drop_table('Stocks_Stage')
         DB.drop_table('Index_Stage')
+        DB.drop_table('Stock_Calc')
 
         # Create landing tables
         stock_table = DB.create_stock_stage()
