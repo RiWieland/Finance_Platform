@@ -253,5 +253,5 @@ class Stock:          # Design own class for Stock?
 
         self.df_stock[['Trading_Date', 'Symbol', 'Year', 'Month', 'Week', 'Day', 'RETURNS', 'VOL_CHG', 'WIL_R',
                            'STO_OSC', 'RSI', 'MOM_14', 'MOM_21',
-                        'MOM_28', 'SMA_14', 'SMA_21', 'SMA_28', 'OBV_14', 'OBV_21', 'OBV_28', 'BETA']].to_sql(
+                        'MOM_28', 'SMA_14', 'SMA_21', 'SMA_28', 'OBV_14', 'OBV_21', 'OBV_28', 'BETA', 'BOLLING_LOWER' ,'BOLLING_UPPER', 'MACD', 'MACD_SIGNAL']].to_sql(
                 target_table, db_connection, if_exists="append", index=False)
