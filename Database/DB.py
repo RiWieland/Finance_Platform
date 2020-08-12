@@ -161,6 +161,22 @@ class DB_object():
         print("Droped Table:", table_name)
 
 
-# def CREATE LOG
+def query(conn, TABLE, YEAR=None):
+    '''
+    # Condition as List to be implemented
+    # Export table as pandas DF
+    '''
+
+    if YEAR:
+        
+        sql = 'select * from {} where 1=1 and YEAR = {};'.format(TABLE, str(YEAR))
+        Stock_frame = pd.read_sql_query(sql, conn)
+
+    else:
+        sql = 'select * from {} where 1=1;'.format(TABLE, YEAR)#,(YEAR)
+        Stock_frame = pd.read_sql_query(sql, conn)
+
+    return Stock_frame
+
 
 
