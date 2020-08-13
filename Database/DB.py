@@ -161,20 +161,23 @@ class DB_object():
         print("Droped Table:", table_name)
 
 
-def query(conn, TABLE, YEAR=None):
+def query(conn, TABLE, YEAR=None, SYMBOL=None):
     '''
     # Condition as List to be implemented
     # Export table as pandas DF
     '''
-
+    sql = 'select * from {} where 1=1 '.format(TABLE)
     if YEAR:
         
-        sql = 'select * from {} where 1=1 and YEAR = {};'.format(TABLE, str(YEAR))
-        Stock_frame = pd.read_sql_query(sql, conn)
+        sql += 'and YEAR = {} '.format(str(YEAR))
 
-    else:
-        sql = 'select * from {} where 1=1;'.format(TABLE, YEAR)#,(YEAR)
-        Stock_frame = pd.read_sql_query(sql, conn)
+    if SYMBOL:
+        SYMBOL = "'" + SYMBOL + "'"
+        sql += 'and SYMBOL = {} '.format(str(SYMBOL))
+    
+    
+    Stock_frame = pd.read_sql_query(sql, conn)
+    Stock_frame['Trading_Date'] = pd.to_datetime(Stock_frame['Trading_Date'])
 
     return Stock_frame
 
