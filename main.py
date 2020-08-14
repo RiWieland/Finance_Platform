@@ -38,7 +38,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     #if args.Initialize:
-    if 1==2:
+    if 1==1:
 
         # Initialie Database
         DB_DIR = Path('__file__').resolve().parent.joinpath('Database/stocks.db')
