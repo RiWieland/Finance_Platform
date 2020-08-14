@@ -67,6 +67,8 @@ class DB_object():
             Month VARCHAR(30),
             Week VARCHAR(30),
             Day VARCHAR(30),
+            Close VARCHAR(30),
+            Adj_Close VARCHAR(30),
             RETURNS VARCHAR(30),
             LOG_RETURN VARCHAR(30),
             VOL VARCHAR(30),
