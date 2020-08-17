@@ -35,3 +35,14 @@ def Portfolio_Best_Return(Return_Matrix, Num=3, Period='Month'):
         
     return Portfolio
 
+def create_labels(stock_frame, portfolio):
+    stock_frame['Label'] = 0 
+    #labels = []
+    for year in portfolio.keys():
+        for month in portfolio[year].keys():
+            
+            stock_frame.loc[(stock_frame['Year'] == year) & (stock_frame['Month']==month)
+                & (stock_frame['Symbol'].isin(portfolio[year][month].index)), 'Label']= 1 
+            
+    return stock_frame            
+
