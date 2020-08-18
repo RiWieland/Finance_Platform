@@ -24,7 +24,7 @@ def to_numeric_(object_):
         return wrapper
     return _decorator
 
-def remove_duplicates(df):
+def cleaning_dataframe(df):
     '''
     - round to 4 digits
     '''
@@ -36,6 +36,6 @@ def remove_duplicates(df):
 
     df = df.round(4).astype(str)
     df.drop_duplicates(inplace=True, ignore_index=True)
-        #continue
+    df = df[30:] # drop first 30 entries -> windows for rolling figures not longer
 
     return df
