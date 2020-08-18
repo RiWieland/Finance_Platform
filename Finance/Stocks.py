@@ -250,6 +250,8 @@ class Stock:          # Design own class for Stock?
 
 
     def calc_to_database(self, target_table, db_connection):
+        self.df_stock['BETA']=1 # correcting because mistake in beta-calculation
+
         df_to_db = remove_duplicates(self.df_stock)
 
         df_to_db.[['Trading_Date', 'Symbol', 'Year', 'Month', 'Week', 'Day', 'Close', 'Adj_Close', 'RETURNS', 'VOL_CHG', 'WIL_R',
