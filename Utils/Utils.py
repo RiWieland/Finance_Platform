@@ -23,3 +23,19 @@ def to_numeric_(object_):
             return fn(self)
         return wrapper
     return _decorator
+
+def remove_duplicates(df):
+    '''
+    - round to 4 digits
+    '''
+    try:
+        df.drop(columns='index', inplace=True)
+    except Exception:
+        pass
+
+
+    df = df.round(4).astype(str)
+    df.drop_duplicates(inplace=True, ignore_index=True)
+        #continue
+
+    return df
