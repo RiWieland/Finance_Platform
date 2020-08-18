@@ -60,9 +60,12 @@ class datacrawler():  # getting attributes from praser
 
                 complete_dataframe = complete_dataframe.append(df, ignore_index=True)#.reset_index(inplace=True,drop=False)
 
-                complete_dataframe.to_sql(self.db_staging_table, self.db_connection, if_exists="append", index=False)
+                
                 print('prices drawn for', stock)
 
             except Exception as e:
                 print(e)
                 #print("Yahoo Finance connection not robust, not successful for:", stock)
+                
+        complete_dataframe.to_sql(self.db_staging_table, self.db_connection, if_exists="append", index=False)
+        print("prices written to table ", self.db_staging_table)
