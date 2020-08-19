@@ -170,18 +170,21 @@ def query(conn, TABLE, YEAR=None, SYMBOL=None):
     '''
     sql = 'select * from {} where 1=1 '.format(TABLE)
     if YEAR:
-        
+
         sql += 'and YEAR = {} '.format(str(YEAR))
 
     if SYMBOL:
         SYMBOL = "'" + SYMBOL + "'"
         sql += 'and SYMBOL = {} '.format(str(SYMBOL))
-    
-    
+
+    # format trading date
     Stock_frame = pd.read_sql_query(sql, conn)
-    Stock_frame['Trading_Date'] = pd.to_datetime(Stock_frame['Trading_Date'])
+    Stock_frame['‚Trading_Date'] = pd.to_datetime(Stock_frame['Trading_Date'])
+    # get numeric
+    for col in Stock_frame.columns:
+        if col not in ['Trading_Date', 'Symbol', 'Index_' ]:
+            Stock_frame[col] = pd.to_numeric(Stock_frame[col])
 
     return Stock_frame
-
 
 
