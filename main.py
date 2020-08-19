@@ -1,6 +1,7 @@
 from Database.DB import DB_object
 from Crawl_data.Crawler import datacrawler
 from Finance.Stocks import Stock
+from MachineLearning.Labeling import Create_Return_Matrix, Portfolio_Best_Return, create_labels
 
 
 from pathlib2 import Path
@@ -69,7 +70,7 @@ if __name__ == '__main__':
         DB = DB_object(str(DB_DIR))
         conn = DB.create_connection()
         print(DB)
-        
+
         Stock_calc_table = DB.create_stock_calc()
 
         # read in data from Database
@@ -84,7 +85,7 @@ if __name__ == '__main__':
 
             # write in Database
             #index_object.calc_to_database(Index_calc_table, conn)
-        
+
         for stock_name in Stock_frame['Symbol'].unique():
 
             dates_MOM = [14, 21, 28]
@@ -94,14 +95,28 @@ if __name__ == '__main__':
 
             # To Do: maybe create Stock Object dynamically
             stock_object = Stock(Stock_frame, stock_name, Index_frame, vol_window, dates_MOM, dates_SMA, dates_OBV)
-            
+
             print('##################################################')
             print('calculating financial key figures for ', stock_name)
 
             stock_object.calc_to_database(Stock_calc_table, conn)
 
 
-# test predictions
+
+    if 1==1:
+
+        # Initialie Database
+        DB_DIR = Path('__file__').resolve().parent.joinpath('Database/stocks.db')
+        DB = DB_object(str(DB_DIR))
+        conn = DB.create_connection()
+        print(DB)
 
 
+        stock_frame = DB.query(conn, 'Stock_Calc', YEAR=2020)
 
+        # Create Portfolio with best returns
+        Return_Matrix = Create_Return_Matrix(stock_frame)
+        portfolio = Portfolio_Best_Return(Return_Matrix, Num=3, Period='Month')
+
+        # create and add labels to stck frame
+        stock_frame = create_labels(stock_frame, portfolio)
