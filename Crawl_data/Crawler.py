@@ -66,6 +66,6 @@ class datacrawler():  # getting attributes from praser
             except Exception as e:
                 print(e)
                 #print("Yahoo Finance connection not robust, not successful for:", stock)
-                
+        complete_dataframe.drop_duplicates(inplace=True, ignore_index=True) 
         complete_dataframe.to_sql(self.db_staging_table, self.db_connection, if_exists="append", index=False)
         print("prices written to table ", self.db_staging_table)
