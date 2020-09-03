@@ -15,7 +15,7 @@ The "create_label" function will then create corresponding labels
 
 ![Example_portfolio](Instructions/Create_Portfolio.png)
 
-## Ploting
+## Dynamic Ploting
 
 Use dynamic_ploting function to plot various key figures 
 
