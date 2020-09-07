@@ -2,6 +2,9 @@
 Algorithmic trading with ML & Financial Analysis
 --- under construction ---
 
+## Initialize
+
+![Example_Init](Instructions/Initialize.jpg)
 
 ## Loading Data from DB
 
