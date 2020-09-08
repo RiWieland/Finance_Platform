@@ -11,7 +11,7 @@ from Utils.Utils import to_numeric_, cleaning_dataframe
 # Underscores in current setting
 # Is this correct pattern to assign attributes via functions?
 
-class Stock:          # Design own class for Stock?
+class Stock:         
 
     def __init__(self, stock_frame, stock_name, index_frame, vol_n, MOM_n, SMA_n, OBV_N):
         self.stock_frame = stock_frame
