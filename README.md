@@ -6,6 +6,13 @@ Algorithmic trading with ML & Financial Analysis
 
 ![Example_Init](Instructions/Initialize.jpg)
 
+## Calculate Key figures
+
+![Example_calc](Instructions/calculation.jpg)
+
+![Example_stocks](Instructions/overview_stocks.jpg)
+
+
 ## Loading Data from DB
 
 ![Example_Connect](Instructions/Connect_Database.png)
