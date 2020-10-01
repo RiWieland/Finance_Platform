@@ -10,7 +10,9 @@ Algorithmic trading with ML & Financial Analysis
 
 ![Example_calc](Instructions/calculation.jpg)
 
-![Example_stocks](Instructions/overview_stocks.jpg)
+The called script will calculate the following key figures for each stock in the index:
+
+![Example_stocks](Instructions/stocks_attributes.png)
 
 
 ## Loading Data from DB
