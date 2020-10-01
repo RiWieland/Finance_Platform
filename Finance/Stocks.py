@@ -13,11 +13,11 @@ from Utils.Utils import to_numeric_, cleaning_dataframe
 
 class Stock:         
 
-    def __init__(self, stock_frame, stock_name, index_frame, vol_n, MOM_n, SMA_n, OBV_N):
+    def __init__(self, stock_frame, stock_name, index_frame, VOL_n, MOM_n, SMA_n, OBV_N):
         self.stock_frame = stock_frame
         self.stock_name = stock_name
         self.index_frame = index_frame
-        self.vol_window = vol_n
+        self.vol_window = VOL_n
         self.risk_free = 0
         self.MOM_n = MOM_n
         self.SMA_n = SMA_n
