@@ -36,10 +36,12 @@ if __name__ == '__main__':
     parser.add_argument("-I", "--Initialize", help="Initialize the project - create database, initial tables and load data", action="store_true")
 
     parser.add_argument("-C", "--Calculate", help="Calculate Financial Key Figures for all stocks that are loaded", action="store_true")
+    parser.add_argument("-P", "--Portfolio", help="Create Portfolio with default metrix", action="store_true")
+
     args = parser.parse_args()
 
-    #if args.Initialize:
-    if 1==1:
+    if args.Initialize:
+    #if 1==1:
 
         # Initialie Database
         DB_DIR = Path('__file__').resolve().parent.joinpath('Database/stocks.db')
@@ -64,8 +66,8 @@ if __name__ == '__main__':
         index_tickers = 'ECON'
         datacrawler(conn, index_table, index_tickers, datasource, start_date, end_date).crawl_prices_to_db()
 
-    # if args.calculation:
-    if 1==1:
+    if args.calculation:
+    #if 1==1:
         DB_DIR = Path('__file__').resolve().parent.joinpath('Database/stocks.db')
         DB = DB_object(str(DB_DIR))
         conn = DB.create_connection()
@@ -103,7 +105,9 @@ if __name__ == '__main__':
 
 
 
-    if 1==1:
+    #if 1==1:
+    if args.Portfolio:
+
 
         # Initialie Database
         DB_DIR = Path('__file__').resolve().parent.joinpath('Database/stocks.db')
