@@ -1,5 +1,4 @@
 # Finance_Platform
-Algorithmic trading with ML & Financial Analysis
 --- under construction ---
 
 ## Initialize
@@ -33,5 +32,3 @@ Use dynamic_ploting function to plot various key figures
 
 ![Example_Connect](Instructions/Ploting_Financials.png)
 
-## Trading with Machine Learning Model
-...
