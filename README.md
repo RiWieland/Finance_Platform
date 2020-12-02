@@ -19,7 +19,7 @@ The called script will calculate the following key figures for each stock in the
 ![Example_Connect](Instructions/Connect_Database.png)
 
 
-## Dynamic Historical-Portfolios construction for training a ML model
+## Dynamic Historical-Portfolios construction
 To construct historical portfolios with highest return for training a model use the "Portfolio_Best_Return" function.
 The function takes a Return_Matrix as an input to construct the best preforming protfolio per a given timeframe(at the moment: Month) for a number of stocks.
 The "create_label" function will then create corresponding labels
