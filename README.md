@@ -3,7 +3,7 @@
 
 ## Initialize
 
-![Example_Init](Instructions/Initialize.jpg)
+- run with init to set up a sqlite with basic data model
 
 ## Calculate Key figures
 
