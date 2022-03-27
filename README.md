@@ -7,9 +7,7 @@
 
 ## Calculate Key figures
 
-![Example_calc](Instructions/calculation.jpg)
-
-The called script will calculate the following key figures for each stock in the index:
+- run with --calculate flag will will calculate the following key figures for each stock in the index:
 
 ![Example_stocks](Instructions/stocks_attributes.png)
 
